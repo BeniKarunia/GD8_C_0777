@@ -6,4 +6,3 @@ class ModelMain {
     var latLoc = 0.0
     var longLoc = 0.0
 }
-

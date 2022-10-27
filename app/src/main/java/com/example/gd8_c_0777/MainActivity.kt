@@ -1,4 +1,5 @@
 package com.example.gd8_c_0777
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -28,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
 
         val geoPoint = GeoPoint(-7.78165, 110.414497)
-
         mapView.setMultiTouchControls(true)
         mapView.controller.animateTo(geoPoint)
         mapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
@@ -41,18 +41,18 @@ class MainActivity : AppCompatActivity() {
         getLocationMarker()
     }
 
-    private fun getLocationMarker(){
-        try{
+    private fun getLocationMarker() {
+        try {
             val stream = assets.open("sample_maps.json")
             val size = stream.available()
             val buffer = ByteArray(size)
             stream.read(buffer)
             stream.close()
             val strContent = String(buffer, StandardCharsets.UTF_8)
-            try{
+            try {
                 val jsonObject = JSONObject(strContent)
                 val jsonArrayResult = jsonObject.getJSONArray("results")
-                for(i in 0 until jsonArrayResult.length()){
+                for(i in 0 until jsonArrayResult.length()) {
                     val jsonObjectResult = jsonArrayResult.getJSONObject(i)
                     val modelMain = ModelMain()
                     modelMain.strName = jsonObjectResult.getString("name")
@@ -65,20 +65,20 @@ class MainActivity : AppCompatActivity() {
                     modelMainList.add(modelMain)
                 }
                 initMarker(modelMainList)
-            } catch (e: JSONException){
+            } catch (e: JSONException) {
                 e.printStackTrace()
             }
-        }catch (ignored: IOException){
+        } catch (ignored: IOException) {
             Toast.makeText(
                 this@MainActivity,
-                "Oops, ada yang tidak beres. Coba ulangi beberapa saat lagi",
+            "Oops, ada yang tidak beres. Coba Ulangi beberapa saat lagi.",
                 Toast.LENGTH_SHORT
             ).show()
         }
     }
 
-    private fun initMarker(modelList: List<ModelMain>){
-        for(i in modelList.indices){
+    private fun initMarker(modelList: List<ModelMain>) {
+        for (i in modelList.indices) {
             overlayItem = ArrayList()
             overlayItem.add(
                 OverlayItem(
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             info.strVicinity = modelList[i].strVicinity
 
             val marker = Marker(mapView)
-            marker.icon = resources.getDrawable(R.drawable.ic_baseline_location_on_24)
+            marker.icon = resources.getDrawable(R.drawable.ic_baseline_location_24)
             marker.position = GeoPoint(modelList[i].latLoc, modelList[i].longLoc)
             marker.relatedObject = info
             marker.infoWindow = CustomInfoWindow(mapView)
@@ -100,7 +100,6 @@ class MainActivity : AppCompatActivity() {
                 item.showInfoWindow()
                 true
             }
-
             mapView.overlays.add(marker)
             mapView.invalidate()
         }
@@ -108,17 +107,18 @@ class MainActivity : AppCompatActivity() {
 
     public override fun onResume() {
         super.onResume()
-        Configuration.getInstance().load(this,PreferenceManager.getDefaultSharedPreferences(this))
-        if(mapView!=null){
+        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+        if(mapView != null) {
             mapView.onResume()
         }
     }
 
     public override fun onPause() {
         super.onPause()
-        Configuration.getInstance().load(this,PreferenceManager.getDefaultSharedPreferences(this))
-        if(mapView!=null){
+        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+        if(mapView != null) {
             mapView.onPause()
         }
     }
+
 }

@@ -6,7 +6,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvContent"
-        android:layout_width="360dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,9 +35,8 @@
                     android:background="@drawable/bg_circle"
                     android:backgroundTint="@color/white"
                     android:padding="10dp"
-                    android:src="@drawable/ic_baseline_location_on_24"
+                    android:src="@drawable/ic_baseline_location_24"
                     app:tint="@android:color/holo_blue_light" />
-
                 <TextView
                     android:id="@+id/tvNamaLokasi"
                     android:layout_width="wrap_content"
@@ -52,7 +50,6 @@
                     android:text="Nama Jalan"
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
-
                 <ImageView
                     android:id="@+id/imageClose"
                     android:layout_width="40dp"
@@ -64,6 +61,7 @@
                     android:padding="10dp"
                     android:src="@drawable/ic_baseline_close_24"
                     app:tint="@android:color/holo_blue_light" />
+
             </RelativeLayout>
 
             <LinearLayout
@@ -76,13 +74,11 @@
                     android:id="@+id/tvAlamat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="OSM"
+                    android:text="@string/app_name"
                     android:textColor="@color/black"/>
-
             </LinearLayout>
 
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <ImageView
@@ -90,9 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cvContent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="-22dp"
         android:rotation="90"
         android:src="@drawable/bg_triangle"
-        app:tint="@color/white" />
-
+        app:tint="@color/white"/>
 </RelativeLayout>
